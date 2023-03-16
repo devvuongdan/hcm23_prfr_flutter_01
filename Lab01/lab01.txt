@@ -1,0 +1,7 @@
+https://api.flutter.dev/flutter/dart-core/Object/hashCode.html
+
+tìm hiểu thêm về swich
+bt:
++ tìm hiểu về ??
++ demo về while và do-while 
++ tìm hiểu về lập trình bất đồng bộ                        

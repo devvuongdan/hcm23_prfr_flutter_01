@@ -55,30 +55,68 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Align(
         alignment: Alignment.center,
         child: SizedBox(
-          width: double.infinity,
-          height: 400,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 50,
-            itemBuilder: (_, id) {
-              Color? randomColor =
-                  Colors.primaries[Random().nextInt(Colors.primaries.length)]
+            width: double.infinity,
+            height: 400,
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) {
+                  Color? randomColor = Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)]
                       [Random().nextInt(9) * 100];
-              return Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 50,
-                ),
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: randomColor,
-                ),
-              );
-            },
-          ),
-        ),
+                  return Container(
+                    // margin: EdgeInsets.only(
+                    //   top: 5,
+                    //   bottom: 5,
+                    //   left: (index == 0 ? 0 : 5),
+                    //   right: (index == 49 ? 0 : 5),
+                    // ),
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 1.0,
+                      ),
+                      shape: BoxShape.circle,
+                      color: randomColor,
+                    ),
+                  );
+                },
+                separatorBuilder: (_, spaceIndex) {
+                  return Container(
+                    width: 10,
+                  );
+                },
+                itemCount: 50)
+            //   ListView.builder(
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: 50,
+            //     itemBuilder: (_, index) {
+            //       print("index: $index");
+            //       Color? randomColor =
+            //           Colors.primaries[Random().nextInt(Colors.primaries.length)]
+            //               [Random().nextInt(9) * 100];
+            //       return Container(
+            //         margin: EdgeInsets.only(
+            //           top: 5,
+            //           bottom: 5,
+            //           left: (index == 0 ? 0 : 5),
+            //           right: (index == 49 ? 0 : 5),
+            //         ),
+            //         height: 50,
+            //         width: 50,
+            //         decoration: BoxDecoration(
+            //           border: Border.all(
+            //             color: Colors.black,
+            //             width: 1.0,
+            //           ),
+            //           shape: BoxShape.circle,
+            //           color: randomColor,
+            //         ),
+            //       );
+            //     },
+            //   ),
+            ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,

@@ -8,10 +8,10 @@ void main(List<String> args) {
 }
 
 double factoInt(n) {
-  double ff = 1;
+  double f = 1;
   for (int i = 1; i <= n; i++) {
-    ff = ff * i;
+    f = f * i;
   }
-  print("The factiorial of the number is $ff");
-  return ff;
+  print("The factiorial of the number is $f");
+  return f;
 }

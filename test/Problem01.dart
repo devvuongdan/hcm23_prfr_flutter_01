@@ -7,5 +7,5 @@ void main() {
   double PF = 0.14 * basicSalary;
   double IT = 0.15 * basicSalary;
   double netSalary = basicSalary + DA + HRA + TA + others - (PF + IT);
-  print("Net Salary = $netSalary");
+  print("Net Salary là $netSalary");
 }

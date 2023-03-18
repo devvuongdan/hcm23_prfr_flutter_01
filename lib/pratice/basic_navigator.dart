@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,21 +8,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -47,26 +38,33 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void updateValueBy2ndSreeenParram(String newValue) {
+    setState(() {
+      value = newValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             MaterialButton(
               textColor: Colors.white,
               color: Colors.red,
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Screen2(onUpdate: update)));
+              onPressed: () async {
+                // final String result =
+                await Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        Screen2(onUpdate: updateValueBy2ndSreeenParram)));
+                // setState(() {
+                //   value = result;
+                // });
               },
               child: Text(value),
             )
@@ -78,9 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Screen2 extends StatefulWidget {
-  // const Screen2({super.key});
-
-  final void Function() onUpdate;
+  final void Function(String) onUpdate;
   const Screen2({super.key, required this.onUpdate});
 
   @override
@@ -90,13 +86,13 @@ class Screen2 extends StatefulWidget {
 class _Screen2State extends State<Screen2> {
   final TextEditingController controller = TextEditingController(text: "ABC");
 
-  @override
-  void initState() {
-    controller.addListener(() {
-      print(controller.text);
-    });
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   controller.addListener(() {
+  //     print(controller.text);
+  //   });
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +112,10 @@ class _Screen2State extends State<Screen2> {
               MaterialButton(
                   child: const Text("Update and Back"),
                   onPressed: () {
+                    widget.onUpdate.call(controller.text);
                     Navigator.of(context).pop();
-                    widget.onUpdate.call;
+                    // Navigator.of(context).pop(controller.text);
+                    // print(controller.text);
                   })
             ],
           ),
@@ -125,4 +123,13 @@ class _Screen2State extends State<Screen2> {
       ),
     );
   }
+}
+
+class User {
+  final String username;
+  final String pasw;
+  User({
+    required this.username,
+    required this.pasw,
+  });
 }
